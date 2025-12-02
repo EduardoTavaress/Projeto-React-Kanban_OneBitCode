@@ -6,7 +6,6 @@ function App() {
     <>
     <Box>
         <Heading>React kanban</Heading>
-      
     </Box>
     </>
   )
