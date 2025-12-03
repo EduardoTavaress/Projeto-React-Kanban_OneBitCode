@@ -1,5 +1,5 @@
 import { Badge, Button, Card, Flex, Heading, Text } from "@radix-ui/themes"
-import type { TaskPriority, TaskStatus } from "../entities/Task"
+import type { Task, TaskPriority, TaskStatus } from "../entities/Task"
 
 interface TaskCardProps {
   task: Task

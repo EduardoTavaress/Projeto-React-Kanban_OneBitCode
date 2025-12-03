@@ -1,5 +1,6 @@
 import { Badge, Flex, Grid, ScrollArea } from "@radix-ui/themes"
 import { TaskCard } from "./TaskCard"
+import type { Task } from "../entities/Task"
 
 export const TaskBoard: React.FC = () => {
 
