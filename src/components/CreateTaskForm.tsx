@@ -12,6 +12,7 @@ import {
 import { PlusIcon } from "@radix-ui/react-icons";
 import type { FormEventHandler } from "react";
 import z from "zod";
+import { useTasks } from "../hooks/UseTasks";
 
 
 const CreateTaskSchema = z.object({
@@ -22,10 +23,12 @@ const CreateTaskSchema = z.object({
 });
 
 export const CreateTaskForm: React.FC = () => {
+  const { createTask } = useTasks();
 
     const handleSubmit: FormEventHandler<HTMLFormElement> = async (ev) => {
         ev.preventDefault();
-        
+
+               
         const formData = new FormData(ev.currentTarget);
         const title = formData.get("title")
         const description = formData.get("description")
@@ -41,7 +44,7 @@ export const CreateTaskForm: React.FC = () => {
             priority,
         });
 
-        alert(JSON.stringify(taskData));
+        await createTask( taskData );
     }
 
   return (
@@ -133,11 +136,10 @@ export const CreateTaskForm: React.FC = () => {
                 <RadioGroup.Item value="high">
                   <Badge color="tomato">Alta</Badge>
                 </RadioGroup.Item>
-
+                
               </RadioGroup.Root>
 
               <Box></Box>
-              
             </Flex>
 
             <Flex gap="2" justify={"end"}>
