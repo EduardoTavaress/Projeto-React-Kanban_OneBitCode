@@ -1,14 +1,22 @@
-import { Badge, Flex, Grid } from "@radix-ui/themes"
+import { Badge, Flex, Grid, ScrollArea } from "@radix-ui/themes"
+import { TaskCard } from "./TaskCard"
 
 export const TaskBoard: React.FC = () => {
 
-    const tasksTOdo: Task[] = [
+    const tasksTodo: Task[] = [
         {
       "id": 2,
       "title": "Reunião com a equipe",
       "description": "Reunião para discutir o progresso do projeto e próximos passos.",
       "status": "todo",
       "priority": "high"
+    },
+    {
+      "id": 4,
+      "title": "Implementar testes",
+      "description": "Desenvolver os testes automatizados na nova funcionalidade do aplicativo.",
+      "status": "todo",
+      "priority": "medium"
     }
     ]
     const tasksInProgress: Task[] = [
@@ -31,26 +39,51 @@ export const TaskBoard: React.FC = () => {
     ]
 
   return (
+    <ScrollArea scrollbars="horizontal">
     <Grid columns="3" gap="4" minWidth={"64rem"}>
 
         <Flex direction="column" gap="4">
             <Badge size="3" color="gray">
-                Para fazer (2)
+                Para fazer ({tasksTodo.length})
             </Badge>
+
+            {tasksTodo.map((task) => 
+                <TaskCard 
+                    key={task.id}
+                    task={task}
+                />
+                )}
+
         </Flex>
 
         <Flex direction="column" gap="4">
              <Badge size="3" color="amber">
-                Em progresso (2)
+                Em progresso ({tasksInProgress.length})
             </Badge>
+
+            {tasksInProgress.map((task) => 
+                <TaskCard 
+                    key={task.id}
+                    task={task}
+                />
+                )}
+
         </Flex>
 
         <Flex direction="column" gap="4">
              <Badge size="3" color="green">
-                Concluídas (2)
+                Concluídas ({tasksDone.length})
             </Badge>
+
+            {tasksDone.map((task) => 
+                <TaskCard 
+                    key={task.id}
+                    task={task}
+                />
+                )}
         </Flex>
 
     </Grid>
+    </ScrollArea>
   )
 }
