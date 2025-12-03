@@ -90,12 +90,16 @@ export const CreateTaskForm: React.FC = () => {
             </Box>
 
             <Flex gap={"8"}>
+
+
               <Box>
+
                 <Text as="div" mb="2">
                   Situação
                 </Text>
 
                 <RadioGroup.Root name="status" defaultValue="todo">
+
                   <RadioGroup.Item value="todo">
                     <Badge color="gray">Para fazer</Badge>
                   </RadioGroup.Item>
@@ -107,13 +111,17 @@ export const CreateTaskForm: React.FC = () => {
                   <RadioGroup.Item value="done">
                     <Badge color="green">Concluída</Badge>
                   </RadioGroup.Item>
+
                 </RadioGroup.Root>
+
               </Box>
+
               <Text as="div" mb="2">
                 Prioridade
               </Text>
 
               <RadioGroup.Root name="priority" defaultValue="low">
+
                 <RadioGroup.Item value="low">
                   <Badge color="sky">Baixa</Badge>
                 </RadioGroup.Item>
@@ -125,9 +133,11 @@ export const CreateTaskForm: React.FC = () => {
                 <RadioGroup.Item value="high">
                   <Badge color="tomato">Alta</Badge>
                 </RadioGroup.Item>
+
               </RadioGroup.Root>
 
               <Box></Box>
+              
             </Flex>
 
             <Flex gap="2" justify={"end"}>
