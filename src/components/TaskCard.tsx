@@ -1,11 +1,14 @@
 import { Badge, Button, Card, Flex, Heading, Text } from "@radix-ui/themes"
 import type { Task, TaskPriority, TaskStatus } from "../entities/Task"
+import { useTasks } from "../hooks/UseTasks"
 
 interface TaskCardProps {
   task: Task
 }
 
 export const TaskCard: React.FC<TaskCardProps> = ({task}) => {
+
+    const { deleteTask, updateTask } = useTasks()
 
     const getActionText = (status: TaskStatus) => {
         const actionTexts = {
@@ -35,6 +38,20 @@ export const TaskCard: React.FC<TaskCardProps> = ({task}) => {
         return priorityColors[priority]
     }
     
+    const handleDelete = (id: string) => {
+        const confirmation = confirm("Deseja excluir essa tarefa ?")
+        if (confirmation) {
+            deleteTask(id)
+        }
+    }
+
+    const handleUpdate = () => {
+        if (task.status === "todo") {
+            updateTask(task.id, {status: "doing"})
+        }else if (task.status === "doing") {
+            updateTask(task.id, {status: "done"})
+        }
+    }
 
   return (
     <Card>
@@ -57,11 +74,11 @@ export const TaskCard: React.FC<TaskCardProps> = ({task}) => {
 
         <Flex gap="2">
             {task.status !== "done" && (
-            <Button color={getActionColor(task.status) }>
+            <Button color={getActionColor(task.status)} onClick={handleUpdate}>
                 {getActionText(task.status)}
             </Button>
             )}
-            <Button color="red">
+            <Button color="red" onClick={() => handleDelete(task.id)}>
                 Excluir
             </Button>
         </Flex>
